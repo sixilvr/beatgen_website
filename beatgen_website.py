@@ -1,4 +1,4 @@
-#TODO: allow downloads, visualizer, cooldown, upcoming features list
+#TODO: allow downloads, visualizer, cooldown, loading animation
 
 import os
 import subprocess
