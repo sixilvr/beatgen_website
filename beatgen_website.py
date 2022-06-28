@@ -23,10 +23,10 @@ data_generators = beatgen.prep_beat("../beatgen")
 def generate():
 	fileid = uuid.uuid4().hex
 	song, gen_info = beatgen.finish_beat("../beatgen", data_generators)
-	song.save(f"audio/{fileid}.wav")
+	song.save(f"user_audio/{fileid}.wav")
 	subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error",
-		"-i", f"audio/{fileid}.wav", "-b:a", "96k", f"audio/{fileid}.mp3"])
-	os.remove(f"audio/{fileid}.wav")
+		"-i", f"user_audio/{fileid}.wav", "-b:a", "96k", f"user_audio/{fileid}.mp3"])
+	os.remove(f"user_audio/{fileid}.wav")
 	data = {
 		"fileid": fileid,
 		"info": gen_info
@@ -43,7 +43,7 @@ def send_audio(fileid):
 		int(fileid, 16)
 	except ValueError:
 		return "Invalid file ID", 400
-	filename = f"audio/{fileid}.mp3"
+	filename = f"user_audio/{fileid}.mp3"
 	delete_later(filename, 60)
 	return flask.send_file(filename)
 
