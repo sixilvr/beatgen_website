@@ -1,4 +1,6 @@
 Flask
+numpy
+scipy
 git+https://github.com/sixilvr/audio
 git+https://github.com/sixilvr/beatgen
 gunicorn
