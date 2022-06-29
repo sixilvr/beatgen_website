@@ -17,12 +17,13 @@ app = flask.Flask(__name__)
 def index():
 	return flask.render_template("index.html")
 
-data_generators = beatgen.prep_beat("beatgen")
+resource_folder = os.path.dirname(beatgen.__file__)
+data_generators = beatgen.prep_beat(resource_folder)
 
 @app.route("/generate")
 def generate():
 	fileid = uuid.uuid4().hex
-	song, gen_info = beatgen.finish_beat("beatgen", data_generators)
+	song, gen_info = beatgen.finish_beat(resource_folder, data_generators)
 	song.save(f"user_audio/{fileid}.wav")
 	subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error",
 		"-i", f"user_audio/{fileid}.wav", "-b:a", "96k", f"user_audio/{fileid}.mp3"])
