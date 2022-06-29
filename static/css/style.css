@@ -11,3 +11,21 @@ h1, h2, h3 {
 ul {
     color: white;
 }
+
+a:link {
+    color: white;
+}
+
+a:visited {
+    color: #eeeeee;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #1a1a1a;
+    color: white;
+    padding: 10px;
+}
