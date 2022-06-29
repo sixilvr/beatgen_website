@@ -33,7 +33,7 @@ def generate():
 	}
 	return data
 
-def delete_later(file, seconds = 60):
+def delete_later(file, seconds = 120):
 	timer = threading.Timer(seconds, lambda: os.remove(file))
 	timer.start()
 
@@ -44,7 +44,7 @@ def send_audio(fileid):
 	except ValueError:
 		return "Invalid file ID", 400
 	filename = f"user_audio/{fileid}.mp3"
-	delete_later(filename, 60)
+	delete_later(filename)
 	return flask.send_file(filename)
 
 #app.run(port = "80", debug = True)
