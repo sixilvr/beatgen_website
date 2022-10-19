@@ -34,8 +34,13 @@ def generate():
 	}
 	return data
 
-def delete_later(file, seconds = 120):
-	timer = threading.Timer(seconds, lambda: os.remove(file))
+def delete_later(file, seconds = 600):
+	def del_func():
+		try:
+			os.remove(file)
+		except FileNotFoundError:
+			print("File not found:", file)
+	timer = threading.Timer(seconds, del_func)
 	timer.start()
 
 @app.route("/audio/<fileid>")
@@ -46,6 +51,9 @@ def send_audio(fileid):
 		return "Invalid file ID", 400
 	filename = f"user_audio/{fileid}.mp3"
 	delete_later(filename)
-	return flask.send_file(filename)
+	try:
+		return flask.send_from_directory("user_audio", fileid + ".mp3")
+	except FileNotFoundError:
+		return "File Not Found", 404
 
 #app.run(port = "80", debug = True)
