@@ -4,12 +4,33 @@ body {
     text-align: center;
 }
 
-h1, h2, h3 {
+h1 {
     color: white;
 }
 
-ul {
+h2 {
+    color: green;
+}
+
+button {
+    padding: 10px;
+}
+
+#downloadButton {
+    display: none;
     color: white;
+}
+
+img {
+    margin: auto;
+    width: 35px;
+    height: auto;
+    display: none;
+}
+
+audio {
+    margin: auto;
+    display: none;
 }
 
 a:link {

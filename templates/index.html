@@ -7,23 +7,17 @@
 	<title>BeatGen</title>
 </head>
 <body>
-	<h1>BeatGen<span style="color:green; font-size:smaller"><em>ALPHA</em></span></h1>
+	<h1>BeatGen</h1>
 	<h2>AI-generated trap beats</h2>
 	<button id="goButton">Generate a beat</button>
 	<br><br>
-	<audio id="audioElement" controls>
-		<source id="audioSource" src="" type="audio/mpeg">
-	</audio>
-	<br>
-	<div>
-		<h3>Upcoming Features</h3>
-			<ul>
-				<li>Melodies</li>
-				<li>Longer beats</li>
-				<li>Downloads</li>
-				<li>Feedback</li>
-				<li>Visualizer</li>
-			</ul>
+	<div id="audioWrapper">
+		<img id="loadingspinner" src="{{ url_for('static', filename='assets/soundloader.gif') }}">
+		<audio id="audioElement" controls>
+			<source id="audioSource" src="" type="audio/mpeg">
+		</audio>
+		<br>
+		<a id="downloadButton" download>Download as mp3</a>
 	</div>
 	<footer>
 		<a href="https://github.com/sixilvr/beatgen_website" target="_blank">Source Code</a>
