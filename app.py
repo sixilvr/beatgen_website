@@ -1,4 +1,4 @@
-#TODO: allow downloads, visualizer, cooldown, loading animation, feedback
+#TODO: beat info, feedback, favicon
 
 import os
 import subprocess
@@ -56,4 +56,4 @@ def send_audio(fileid):
 	except FileNotFoundError:
 		return "File Not Found", 404
 
-# app.run(port = "80", debug = True)
+# app.run(port = "80", debug = True) # when running locally

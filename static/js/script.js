@@ -10,14 +10,21 @@ ctx.scale(1, -1);
 ctx.translate(0, -vis.height);
 ctx.fillStyle = "white";
 
-const ac = new (window.AudioContext || window.webkitAudioContext)();
-let aSrc = ac.createMediaElementSource(audioElement);
-let as = ac.createAnalyser();
-aSrc.connect(as);
-as.connect(ac.destination);
-as.fftSize = vis.width;
-const bufferLength = as.frequencyBinCount;
-const data = new Uint8Array(bufferLength);
+let ac, aSrc, as, bufferLength, data;
+
+function initac() {
+	if (ac) {
+		return;
+	}
+	ac = new (window.AudioContext || window.webkitAudioContext)();
+	aSrc = ac.createMediaElementSource(audioElement);
+	as = ac.createAnalyser();
+	aSrc.connect(as);
+	as.connect(ac.destination);
+	as.fftSize = vis.width;
+	bufferLength = as.frequencyBinCount;
+	data = new Uint8Array(bufferLength);
+}
 
 const lowLimit = 3;
 function animate() {
@@ -35,6 +42,7 @@ function animate() {
 
 goButton.onclick = () => {
 	buttonCooldown();
+	initac()
 
 	hide(audioElement);
 	show(loadingSpinner);
